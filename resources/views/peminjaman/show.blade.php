@@ -9,7 +9,7 @@
             Detail Peminjaman
         </h1>
         <p style="color:#64748b; margin-bottom:24px;">
-            Informasi peminjaman buku di Perpustakaan Digital.
+            Informasi peminjaman buku di Perpustakaan-250441100032.
         </p>
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;">

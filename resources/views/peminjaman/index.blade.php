@@ -304,7 +304,7 @@
 
         <!-- FOOTER -->
         <p class="riwayat-footer">
-            Sistem Informasi Perpustakaan Digital
+            Sistem Informasi Perpustakaan - 250441100032
         </p>
 
     </div>

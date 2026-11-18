@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perpustakaan Digital</title>
+    <title>Perpustakaan-250441100032 </title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -13,7 +13,7 @@
 
     <nav class="flex justify-between items-center px-8 py-5 bg-white shadow-sm">
         <h1 class="text-xl font-bold text-green-700">
-            Perpustakaan Digital
+            Perpustakaan-250441100032 
         </h1>
 
         <a href="{{ route('login') }}"
@@ -32,7 +32,7 @@
             <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-5">
                 Selamat Datang di
                 <span class="text-green-600">
-                    Perpustakaan Digital
+                    Perpustakaan-250441100032 
                 </span>
             </h2>
 
@@ -53,7 +53,7 @@
     </main>
 
     <footer class="text-center py-5 text-gray-500 text-sm">
-        &copy; 2026 Perpustakaan Digital
+        &copy; 2026 Perpustakaan-250441100032 
     </footer>
 
 </body>

@@ -80,7 +80,7 @@
 <body>
 
     <div class="navbar">
-        <div class="logo">Perpustakaan Digital</div>
+        <div class="logo">Perpustakaan-250441100032 </div>
         <div class="role">{{ $role }}</div>
     </div>
 
@@ -91,7 +91,7 @@
             <p>{{ $deskripsi }}</p>
 
             <div class="info">
-                Anda berhasil masuk ke halaman dashboard Perpustakaan Digital.
+                Anda berhasil masuk ke halaman dashboard Perpustakaan-250441100032.
             </div>
         </div>
     </div>
