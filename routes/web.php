@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\BukuController;
-use App\Http\Controllers\Api\BukuController as ApiBukuController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\Admin\PenggunaController;
+use App\Http\Controllers\Api\BukuController as ApiBukuController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Halaman utama
@@ -34,14 +34,9 @@ Route::get('/buku-cari', [BukuController::class, 'cari'])
     ->middleware('auth')
     ->name('buku.cari');
 
-// A3 (versi rentan) pernah menggunakan GET /buku/{buku}/hapus.
-// Route GET tersebut sengaja tidak dipertahankan pada versi akhir.
-// Penghapusan final hanya menerima DELETE dan dilindungi Gate serta CSRF.
-// Route::delete('/buku/{buku}', [ApiBukuController::class, 'destroy'])
-//     ->middleware(['auth', 'can:kelola-buku'])
-//     ->name('buku.destroy');
-Route::get('/buku/{buku}/hapus', [BukuController::class, 'destroy'])
-    ->middleware('auth')
+// A3: Penghapusan menerima DELETE dan dilindungi Gate serta CSRF.
+Route::delete('/buku/{buku}', [ApiBukuController::class, 'destroy'])
+    ->middleware(['auth', 'can:kelola-buku'])
     ->name('buku.destroy');
 // Dashboard umum
 Route::get('/dashboard', function () {
@@ -52,36 +47,36 @@ Route::get('/dashboard', function () {
 Route::get('/admin', function () {
     return view('dashboard-role', [
         'role' => 'Admin',
-        'deskripsi' => 'Anda memiliki akses untuk mengelola data dan aktivitas perpustakaan.'
+        'deskripsi' => 'Anda memiliki akses untuk mengelola data dan aktivitas perpustakaan.',
     ]);
 })->middleware([
     'auth',
     'role:admin',
-    'permission:akses-dashboard-admin'
+    'permission:akses-dashboard-admin',
 ])->name('admin');
 
 // Dashboard Petugas
 Route::get('/petugas', function () {
     return view('dashboard-role', [
         'role' => 'Petugas',
-        'deskripsi' => 'Anda dapat membantu mengelola buku dan proses peminjaman perpustakaan.'
+        'deskripsi' => 'Anda dapat membantu mengelola buku dan proses peminjaman perpustakaan.',
     ]);
 })->middleware([
     'auth',
     'role:petugas',
-    'permission:akses-dashboard-petugas'
+    'permission:akses-dashboard-petugas',
 ])->name('petugas');
 
 // Dashboard Siswa
 Route::get('/siswa', function () {
     return view('dashboard-role', [
         'role' => 'Siswa',
-        'deskripsi' => 'Anda dapat melihat koleksi buku dan mengelola aktivitas peminjaman.'
+        'deskripsi' => 'Anda dapat melihat koleksi buku dan mengelola aktivitas peminjaman.',
     ]);
 })->middleware([
     'auth',
     'role:siswa',
-    'permission:lihat-profil-sendiri'
+    'permission:lihat-profil-sendiri',
 ])->name('siswa');
 
 // Profil pengguna
@@ -104,7 +99,7 @@ Route::get('/peminjaman', [PeminjamanController::class, 'index'])
         'auth',
         'role:siswa',
         'permission:melihat-status-peminjaman-sendiri',
-        'permission:melihat-riwayat-peminjaman-sendiri'
+        'permission:melihat-riwayat-peminjaman-sendiri',
     ])
     ->name('peminjaman.index');
 
@@ -112,7 +107,7 @@ Route::get('/peminjaman', [PeminjamanController::class, 'index'])
 Route::middleware([
     'auth',
     'role:siswa',
-    'permission:mengajukan-peminjaman-buku'
+    'permission:mengajukan-peminjaman-buku',
 ])->group(function () {
     Route::get('/peminjaman/create', [PeminjamanController::class, 'create'])
         ->name('peminjaman.create');
@@ -132,7 +127,7 @@ Route::get('/admin/peminjaman', [PeminjamanController::class, 'kelola'])
     ->middleware([
         'auth',
         'role:admin|petugas',
-        'permission:kelola-peminjaman'
+        'permission:kelola-peminjaman',
     ])
     ->name('peminjaman.kelola');
 
@@ -140,7 +135,7 @@ Route::get('/admin/peminjaman', [PeminjamanController::class, 'kelola'])
 Route::middleware([
     'auth',
     'role:admin|petugas',
-    'permission:memproses-persetujuan-peminjaman'
+    'permission:memproses-persetujuan-peminjaman',
 ])->group(function () {
     Route::patch('/admin/peminjaman/{id}/setujui', [PeminjamanController::class, 'setujui'])
         ->name('peminjaman.setujui');
@@ -155,7 +150,7 @@ Route::patch('/admin/peminjaman/{id}/kembalikan', [PeminjamanController::class, 
         'auth',
         'role:admin|petugas',
         'permission:kelola-pengembalian',
-        'permission:mencatat-pengembalian-buku'
+        'permission:mencatat-pengembalian-buku',
     ])
     ->name('peminjaman.kembalikan');
 
@@ -163,7 +158,7 @@ Route::patch('/admin/peminjaman/{id}/kembalikan', [PeminjamanController::class, 
 Route::middleware([
     'auth',
     'role:admin',
-    'permission:kelola-data-pengguna'
+    'permission:kelola-data-pengguna',
 ])->prefix('admin')->group(function () {
 
     Route::get('/pengguna', [PenggunaController::class, 'index'])

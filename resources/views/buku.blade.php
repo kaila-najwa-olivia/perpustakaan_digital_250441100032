@@ -337,7 +337,7 @@
                         try {
                             const formHapus = document.getElementById('form-hapus-template').cloneNode(true);
                             formHapus.removeAttribute('id');
-                            formHapus.action = `/buku/${item.id}`;
+                            formHapus.action = `/api/buku/${item.id}`;
 
                             const response = await fetch(formHapus.action, {
                                 method: 'POST',
